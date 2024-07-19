@@ -4,7 +4,7 @@
   "description": "Combine glyph (SDF) PBFs on the fly.",
   "main": "index.js",
   "dependencies": {
-    "protocol-buffers": "^2.4.7"
+    "protocol-buffers": "~5"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
