@@ -1,18 +1,17 @@
-'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
 
-var protobuf = require('protocol-buffers');
-var fs = require('fs');
-var path = require('path');
+const protobuf = require('protocol-buffers');
 
-var messages = protobuf(fs.readFileSync(path.join(__dirname, './proto/glyphs.proto')));
+const messages = protobuf(fs.readFileSync(path.join(__dirname, './proto/glyphs.proto')));
 
 function debug(buffer, decode) {
-    if (decode) buffer = messages.glyphs.decode(buffer);
+  if (decode) buffer = messages.glyphs.decode(buffer);
 
-    return JSON.stringify(buffer, function(k, v) {
-        if (k !== 'bitmap') return v;
-        return v ? v.data.length : v;
-    }, 2);
+  return JSON.stringify(buffer, function (k, v) {
+    if (k !== 'bitmap') return v;
+    return v ? v.data.length : v;
+  }, 2);
 }
 
 /**
@@ -23,45 +22,43 @@ function debug(buffer, decode) {
  * @param {array} buffers An array of SDF PBFs.
  */
 function combine(buffers, fontstack) {
-    var result,
-        coverage = {};
+  let result;
+  const coverage = new Set();
 
-    if (!buffers || buffers.length === 0) return;
+  if (!buffers || buffers.length === 0) return;
 
-    for (var i = 0, j; i < buffers.length; i++) {
-        var buf = buffers[i];
-        var decoded = messages.glyphs.decode(buf);
-        var glyphs = decoded.stacks[0].glyphs;
-        if (!result) {
-            for (j = 0; j < glyphs.length; j++) {
-                coverage[glyphs[j].id] = true;
-            }
-            result = decoded;
-        } else {
-            for (j = 0; j < glyphs.length; j++) {
-                var glyph = glyphs[j];
-                if (!coverage[glyph.id]) {
-                    result.stacks[0].glyphs.push(glyph);
-                    coverage[glyph.id] = true;
-                }
-            }
-            result.stacks[0].name += ', ' + decoded.stacks[0].name;
+  for (const buf of buffers) {
+    const decoded = messages.glyphs.decode(buf);
+    const { glyphs } = decoded.stacks[0];
+    if (!result) {
+      for (const glyph of glyphs) {
+        coverage.add(glyph.id);
+      }
+      result = decoded;
+    } else {
+      for (const glyph of glyphs) {
+        if (!coverage.has(glyph.id)) {
+          result.stacks[0].glyphs.push(glyph);
+          coverage.add(glyph.id);
         }
+      }
+      result.stacks[0].name += ', ' + decoded.stacks[0].name;
     }
-    if (fontstack) result.stacks[0].name = fontstack;
+  }
+  if (fontstack) result.stacks[0].name = fontstack;
 
-    result.stacks[0].glyphs.sort(compareId);
+  result.stacks[0].glyphs.sort(compareId);
 
-    return messages.glyphs.encode(result);
+  return messages.glyphs.encode(result);
 }
 
 function compareId(a, b) {
-    return a.id - b.id;
+  return a.id - b.id;
 }
 
 module.exports = {
-    combine: combine,
-    debug: debug,
-    encode: messages.glyphs.encode,
-    decode: messages.glyphs.decode
+  combine,
+  debug,
+  encode: messages.glyphs.encode,
+  decode: messages.glyphs.decode
 };

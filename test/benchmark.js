@@ -1,16 +1,12 @@
-'use strict';
+const fs = require('node:fs');
+const Benchmark = require('benchmark');
+const glyphs = require('..');
+const arialUnicode0255 = fs.readFileSync(__dirname + '/fixtures/arialunicode.0.255.pbf');
+const openSans0255 = fs.readFileSync(__dirname + '/fixtures/opensansbold.0.255.pbf');
+const dinoffcpro0255 = fs.readFileSync(__dirname + '/fixtures/dinoffcpro.0.255.pbf');
 
-var Benchmark = require('benchmark');
-var fs = require('fs');
-var glyphs = require('..');
-var arialUnicode0255 = fs.readFileSync(__dirname + '/fixtures/arialunicode.0.255.pbf'),
-    openSans0255 = fs.readFileSync(__dirname + '/fixtures/opensansbold.0.255.pbf'),
-    dinoffcpro0255 = fs.readFileSync(__dirname + '/fixtures/dinoffcpro.0.255.pbf');
-
-new Benchmark('glyphs.combine three fonts', function() {
+new Benchmark('glyphs.combine three fonts', () => {
     glyphs.combine([arialUnicode0255, openSans0255, dinoffcpro0255]);
-})
-.on('complete', function(event) {
-    console.log(String(event.target));
-})
-.run();
+  })
+  .on('complete', event => console.log(String(event.target)))
+  .run();

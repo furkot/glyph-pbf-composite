@@ -17,11 +17,5 @@
   "scripts": {
     "test": "make check",
     "doc": "dox -r index.js | doxme --readme > README.md"
-  },
-  "jshintConfig": {
-    "undef": true,
-    "unused": true,
-    "strict": true,
-    "node": true
   }
 }
