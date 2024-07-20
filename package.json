@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@pirxpilot/jshint": "~3",
-    "benchmark": "^1.0.0"
+    "benchmark": "~2"
   },
   "scripts": {
     "test": "make check"
