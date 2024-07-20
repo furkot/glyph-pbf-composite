@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Combine glyph (SDF) PBFs on the fly.",
   "main": "index.js",
-  "repository": "github:furkot/glyph-pbf-composite",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/furkot/glyph-pbf-composite.git"
+  },
   "dependencies": {
     "protocol-buffers": "~5"
   },
@@ -17,5 +20,9 @@
   "scripts": {
     "test": "make check",
     "doc": "dox -r index.js | doxme --readme > README.md"
-  }
+  },
+  "files": [
+    "index.js",
+    "proto"
+  ]
 }
