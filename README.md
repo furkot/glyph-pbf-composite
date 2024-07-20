@@ -1,3 +1,5 @@
+Modernized clone of @mapbox/glyph-pbf-composite
+
 # glyph-pbf-composite
 
 Combine glyph (SDF) PBFs on the fly.
@@ -22,7 +24,7 @@ to determine glyph priority.
 Requires [nodejs](http://nodejs.org/).
 
 ```sh
-$ npm install @mapbox/glyph-pbf-composite
+$ npm install @furkot/glyph-pbf-composite
 ```
 
 ## Tests
