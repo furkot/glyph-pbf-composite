@@ -1,4 +1,11 @@
 
+1.0.2 / 2024-07-20
+==================
+
+ * update benchmark to ~2
+ * remove unused `opener` dependency
+ * remove outdated modules used for docs generation
+
 1.0.1 / 2024-07-19
 ==================
 
