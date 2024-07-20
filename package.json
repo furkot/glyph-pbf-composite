@@ -8,10 +8,10 @@
     "protocol-buffers": "~5"
   },
   "devDependencies": {
+    "@pirxpilot/jshint": "~3",
     "benchmark": "^1.0.0",
     "dox": "^0.6.1",
     "doxme": "^1.4.3",
-    "jshint": "^2.9.4",
     "opener": "^1.4.3"
   },
   "scripts": {
