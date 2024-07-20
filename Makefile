@@ -9,4 +9,7 @@ test:
 bench:
 	node test/benchmark.js
 
-.PHONY: check lint test
+doc:
+	documentation readme index.js --section=API
+
+.PHONY: check lint test bench doc

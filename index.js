@@ -16,10 +16,13 @@ function debug(buffer, decode) {
 
 /**
  * Combine any number of glyph (SDF) PBFs.
- * Returns a re-encoded PBF with the combined
- * font faces, composited using array order
+ *
+ * Returns a re-encoded PBF with the combined font faces, composited using array order
  * to determine glyph priority.
- * @param {array} buffers An array of SDF PBFs.
+ *
+ * @param {array} buffers An array of SDF PBFs
+ * @param {string} fontstack Optional fontstack name to use for the combined PBF
+ * @returns {Buffer} A combined SDF PBF
  */
 function combine(buffers, fontstack) {
   let result;
