@@ -1,3 +1,7 @@
+[![NPM version][npm-image]][npm-url]
+[![Build Status][build-image]][build-url]
+[![Dependency Status][deps-image]][deps-url]
+
 Modernized clone of @mapbox/glyph-pbf-composite
 
 # glyph-pbf-composite
@@ -33,3 +37,11 @@ $ npm install @furkot/glyph-pbf-composite
 $ npm test
 ```
 
+[npm-image]: https://img.shields.io/npm/v/@furkot/glyph-pbf-composite
+[npm-url]: https://npmjs.org/package/@furkot/glyph-pbf-composite
+
+[build-url]: https://github.com/furkot/glyph-pbf-composite/actions/workflows/check.yaml
+[build-image]: https://img.shields.io/github/actions/workflow/status/furkot/glyph-pbf-composite/check.yaml?branch=main
+
+[deps-image]: https://img.shields.io/librariesio/release/npm/@furkot/glyph-pbf-composite
+[deps-url]: https://libraries.io/npm/@furkot%2Fglyph-pbf-composite
