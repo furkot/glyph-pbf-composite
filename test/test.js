@@ -2,7 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 
 const glyphs = require('../index');
-const fs = require('fs');
+const fs = require('node:fs');
 
 const openSans512 = fs.readFileSync(__dirname + '/fixtures/opensans.512.767.pbf');
 const arialUnicode512 = fs.readFileSync(__dirname + '/fixtures/arialunicode.512.767.pbf');
@@ -53,11 +53,15 @@ test('compositing and providing fontstack string name', function () {
 
 test('debug method shows decoded glyphs', function () {
   const something = glyphs.debug(openSans512, true);
-  assert.doesNotThrow(function () { JSON.parse(something); });
+  assert.doesNotThrow(function () {
+    JSON.parse(something);
+  });
   assert.equal(JSON.parse(something).stacks[0].glyphs.length, 16);
 
   const decoded = glyphs.debug(glyphs.decode(openSans512));
-  assert.doesNotThrow(function () { JSON.parse(decoded); });
+  assert.doesNotThrow(function () {
+    JSON.parse(decoded);
+  });
   assert.equal(JSON.parse(something).stacks[0].glyphs.length, 16);
 });
 
@@ -69,7 +73,7 @@ test('can composite only one pbf', function () {
   const composite = glyphs.decode(glyphs.combine([openSans512]));
   const expected = glyphs.decode(openSans512);
 
-  assert.deepEqual(composite, expected, 'doesn\'t break itself');
+  assert.deepEqual(composite, expected, "doesn't break itself");
 });
 
 test('can composite more than two', function () {

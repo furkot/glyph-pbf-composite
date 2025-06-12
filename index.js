@@ -8,10 +8,14 @@ const messages = protobuf(fs.readFileSync(path.join(__dirname, './proto/glyphs.p
 function debug(buffer, decode) {
   if (decode) buffer = messages.glyphs.decode(buffer);
 
-  return JSON.stringify(buffer, function (k, v) {
-    if (k !== 'bitmap') return v;
-    return v ? v.data.length : v;
-  }, 2);
+  return JSON.stringify(
+    buffer,
+    function (k, v) {
+      if (k !== 'bitmap') return v;
+      return v ? v.data.length : v;
+    },
+    2
+  );
 }
 
 /**
