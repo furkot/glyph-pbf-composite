@@ -11,7 +11,7 @@
     "protocol-buffers": "~5"
   },
   "devDependencies": {
-    "@pirxpilot/jshint": "~3",
+    "@biomejs/biome": "^1.9.4",
     "benchmark": "~2"
   },
   "scripts": {
